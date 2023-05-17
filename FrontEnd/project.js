@@ -82,3 +82,4 @@ function getWorkHtmlElement(work){
 }
 
 displayFilters();
+console.log(localStorage);
