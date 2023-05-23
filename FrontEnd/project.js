@@ -1,3 +1,7 @@
+import { userConnected } from "./userConnected.mjs";
+
+userConnected();
+
 const gallery = document.getElementById('gallery');
 console.log(gallery);
 
@@ -39,7 +43,6 @@ async function displayFilters(){
         createButton.innerText = element.name;
         createButton.classList.add('sortButton');
         createButton.setAttribute('type', 'button');
-        // createButton.setAttribute('id', 'button' + element.id);
         createButton.dataset.categoryId = element.id;
         sortButtons.appendChild(createButton);
         allButtons.push(createButton);
@@ -83,3 +86,40 @@ function getWorkHtmlElement(work){
 
 displayFilters();
 console.log(localStorage);
+
+
+let modal = null
+
+const modalClose = document.getElementById('modalClose');
+console.log(modalClose);
+
+const openModal = function (e) {
+    e.preventDefault();
+    const target = document.querySelector(e.target.getAttribute('href'));
+    console.log(target)
+    target.style.display = 'flex'
+    target.removeAttribute('aria-hidden');
+    target.setAttribute('aria-modal', 'true');
+    modal = target
+    modal.addEventListener('click', closeModal);
+    modal.querySelector('#modalClose').addEventListener('click', closeModal);
+    modal.querySelector('.modalStop').addEventListener('click', stopPropagation);
+}
+
+const closeModal = function (e) {
+    if (modal == null) return
+    e.preventDefault();
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.removeAttribute('aria-modal');
+    modal.removeEventListener('click', closeModal);
+    modal.querySelector('#modalClose').removeEventListener('click', closeModal);
+    modal.querySelector('.modalStop').removeEventListener('click', stopPropagation);
+    modal == null 
+}
+
+const stopPropagation = function (e){
+    e.stopPropagation();
+}
+
+

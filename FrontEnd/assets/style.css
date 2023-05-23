@@ -66,6 +66,10 @@ header {
 section {
 	margin: 50px 0
 }
+a {
+	text-decoration: none;
+	color: black;
+}
 
 h1{
 	display: flex;
@@ -80,7 +84,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
+
 }
 
 h2{
@@ -89,6 +93,29 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+
+/* editionMode */
+.editionMode{
+	display: none;
+	justify-content: center;
+	width: 100%;
+
+	gap: 20px;
+	padding-top: 10px;
+
+	background-color: black;
+}
+.editionMode i, .editionMode a{
+	color: white;
+}
+.editionMode button{
+	margin-bottom: 10px;
+	border-radius: 60px;
+	padding: 8px 20px 8px 20px;
+
+	background: #FFFFFF;
+}
+/* navSection */
 nav ul {
 	display: flex;
 	align-items: center;
@@ -103,6 +130,7 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+/* login */
 .login {
 	display: flex;
 	flex-direction: column;
@@ -149,6 +177,7 @@ li:hover {
 
 	font-size: 14px;
 }
+/* introduction */
 #introduction {
 	display: flex;
 	align-items: center;
@@ -158,8 +187,8 @@ li:hover {
 }
 #introduction img {
 	display: block;
-	margin: auto;
-	width: 80%;
+	width: 90%;
+	object-fit: cover;
 }
 
 #introduction article {
@@ -167,15 +196,203 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+	margin-top: 20px;
 }
 
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+/* portfolio */
+.portfolioTitle {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	position: relative;
 }
+.portfolioTitle h2 {
+	margin: 0px 30px 1em 45px;
+}
+/* edit buttons */
+.editButton {
+	display: none;
+	cursor: pointer;
+}
+.editButton a {
+	display: flex;
+	
+	flex-direction: row;
+	height: 14px;
+	align-items: center;
+
+	margin-top: 10px;
+
+}
+.editButton i {
+	size: 14px;
+	margin-right: 8px;
+
+}
+#projectEditButton{
+	right: 360px;
+}
+#figureEditButton{
+	top: 530px;
+}
+#articleEditButton{
+	top: 215px;
+}
+/* modal */
+.modal{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+}
+.projectModal {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	left: 1020px;
+	top: 25vh;
+
+	width: 630px;
+	height: 760px;
+	
+	background-color: #FFFFFF;
+	border-radius: 10px;
+}
+#modalClose {
+	position: absolute;
+	right: 40px;
+	top: 20px;
+	font-size: x-large;
+	cursor: pointer;
+}
+#titleModal{
+	align-items: center;
+
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	
+	color: black;
+}
+.photoGallery{
+	box-sizing: border-box;
+	display: flex;
+	justify-content:space-between;
+	margin-top: 40px;
+	padding: 13px;
+
+	height: 440px;
+	width: 480px;
+
+	background-color: red;
+	flex-wrap: wrap;
+}
+.photoGallery figure{
+	height: 120px;
+}
+.photoGalleryIcons{
+	display: flex;
+}
+.photoGalleryIcons i{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	height: 9px;
+	width: 9px;
+
+	color: #FFFFFF;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+/* .photoFromGallery{
+	display: flex;
+	flex-direction: row;
+}
+.photoFromGallery i{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	height: 9px;
+	width: 9px;
+
+	color: #FFFFFF;
+	background-color: black;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+.fa-trash-can{
+	position: relative;
+	bottom: 115px;
+	left: 50px;
+}
+.fa-arrows{
+	position: relative;
+	bottom: 115px;
+	left: 30px;
+} */
+.photoGallery figure img{
+	display: flex;
+	height: 100px;
+	width: 80px;
+	margin-bottom: 5px;
+}
+.uploadAndDelete{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+
+	margin-top: 40px;
+
+	font-family: 'Syne';
+	font-size: 14px;
+	font-style: normal;
+}
+.uploadAndDelete::before{
+	content: '';
+	box-sizing: border-box;
+	width: 480px;
+	height: 2px;
+
+	margin-top: 20px;
+	margin-bottom: 30px;
+
+	background-color: #B3B3B3;
+	
+	border: 1px solid;
+	border-color: transparent;
+}
+.uploadAndDelete button{
+	justify-content: center;
+	width: 240px;
+	padding: 10px 40px 10px 40px;
+
+	color: #FFFFFF;
+	
+	background-color: #1D6154;
+	
+	border-color: #1D6154;
+	border-radius: 60px;
+}
+.uploadAndDelete p{
+	margin-top: 20px;
+	color: red;
+	
+	font-weight: 400;
+}
+/* gallery */
 .gallery {
 	width: 100%;
 	display: grid;
@@ -189,6 +406,7 @@ li:hover {
 	margin-bottom: 8px;
 
 }
+/* contact */
 #contact {
 	width: 50%;
 margin: auto;
@@ -231,13 +449,13 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
+/* sort buttons */
 .sortButtons {
 	display: flex;
 	justify-content: center;
 	gap: 20px;
 
-	margin: 50px 0px 60px 0px;
+	margin: 30px 0px 60px 0px;
 }
 
 .sortButton {
@@ -258,7 +476,7 @@ input[type="submit"]{
 	background-color: #1D6154;
 	color: white;
 }
-
+/* footer */
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;

@@ -7,17 +7,29 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="https://kit.fontawesome.com/92ec26ef58.css" crossorigin="anonymous">
 </head>
+
+
 <body>
+	<aside class="editionMode" id="editionMode">
+		<div class="editButton" id="editionModeEditButton">
+			<a><i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
+		</div>
+		<button class="publishChanges" id="publishChanges">Publier les changements</button>
+	</aside>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<a href="./login.html"><li>login</li></a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -26,21 +38,133 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<div class="editButton" id="figureEditButton">
+				<a><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+			</div>
 		</figure>
 		<article>
+			<div class="editButton" id="articleEditButton">
+				<a><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+			</div>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
+	
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="portfolioTitle">
+			<h2>Mes Projets</h2>
+			<div class="editButton" id="projectEditButton">
+				<a href="#modal"><i class="fa-regular fa-pen-to-square" href="#modal"></i>modifier</a>
+			</div>
+		</div>
+
+		<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titleModal" style="display: none;">
+			<div class="projectModal modalStop" id="projectModal">
+				<i class="fa-solid fa-xmark" id="modalClose"></i>
+				<h1 id="titleModal">Galerie photo</h1>
+				<div class="photoGallery">
+					<figure class="photoFromGallery">
+						<img src="./appartement-paris.png">
+						<a id="">éditer</a>
+						<div class="photoGalleryIcons">
+							<i class="fa-solid fa-arrows-up-down-left-right fa-arrows"></i>
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<!-- <figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure>
+					<figure>
+						<img src="./appartement-paris.png">
+						<a>éditer</a>
+						<div class="galleryIcons">
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
+					</figure> -->
+				</div>
+				<div class="uploadAndDelete">
+					<button>Ajouter une photo</button>
+					<p>supprimer la galerie</p>
+				</div>
+			</div>
+		</aside>
+		
 		<div class="sortButtons" id="sortButtons">
 			<button class="sortButton selectedButton" type="button" id="button0" data-category-id='0'>Tous</button>
-			<!-- <button class="sortButton" type="button" id="objetsButton">Objets</button>
-			<button class="sortButton" type="button" id="appartementsButton">Appartements</button>
-			<button class="sortButton" type="button" id="hotelsAndRestaurantsButton">Hotels & restaurants</button> -->
 		</div>
 		<div class="gallery" id="gallery">
 		</div>
@@ -68,7 +192,7 @@
 	</nav>
 </footer>
 
-<script src="./project.js"></script>
+<script src="./project.js" type="module"></script>
 
 
 </body>
