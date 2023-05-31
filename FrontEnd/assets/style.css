@@ -94,6 +94,10 @@ h2{
 	color: #1D6154
 }
 
+button, a, i {
+	cursor: pointer;
+}
+
 /* editionMode */
 .editionMode{
 	display: none;
@@ -130,12 +134,14 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 /* login */
 .login {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 170px;
+	align-items: center;
+	margin-top: 25vh;
 }
 .login a {
 	color: black;
@@ -255,13 +261,12 @@ li:hover {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 	left: 1020px;
 	top: 25vh;
 
 	width: 630px;
-	height: 760px;
+	height: 740px;
 	
 	background-color: #FFFFFF;
 	border-radius: 10px;
@@ -271,10 +276,16 @@ li:hover {
 	right: 40px;
 	top: 20px;
 	font-size: x-large;
-	cursor: pointer;
 }
-#titleModal{
+#previousPage {
+	position: absolute;
+	left: 40px;
+	top: 20px;
+	font-size: x-large;
+}
+.titleModal{
 	align-items: center;
+	padding-top: 70px;
 
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -283,84 +294,7 @@ li:hover {
 	
 	color: black;
 }
-.photoGallery{
-	box-sizing: border-box;
-	display: flex;
-	justify-content:space-between;
-	margin-top: 40px;
-	padding: 13px;
-
-	height: 440px;
-	width: 480px;
-
-	background-color: red;
-	flex-wrap: wrap;
-}
-.photoGallery figure{
-	height: 120px;
-}
-.photoGalleryIcons{
-	display: flex;
-}
-.photoGalleryIcons i{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 5px;
-	height: 9px;
-	width: 9px;
-
-	color: #FFFFFF;
-	background-color: black;
-	border: 1px solid black;
-	border-radius: 2px;
-}
-/* .photoFromGallery{
-	display: flex;
-	flex-direction: row;
-}
-.photoFromGallery i{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 5px;
-	height: 9px;
-	width: 9px;
-
-	color: #FFFFFF;
-	background-color: black;
-	border: 1px solid black;
-	border-radius: 2px;
-}
-.fa-trash-can{
-	position: relative;
-	bottom: 115px;
-	left: 50px;
-}
-.fa-arrows{
-	position: relative;
-	bottom: 115px;
-	left: 30px;
-} */
-.photoGallery figure img{
-	display: flex;
-	height: 100px;
-	width: 80px;
-	margin-bottom: 5px;
-}
-.uploadAndDelete{
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	gap: 10px;
-
-	margin-top: 40px;
-
-	font-family: 'Syne';
-	font-size: 14px;
-	font-style: normal;
-}
-.uploadAndDelete::before{
+.modalButtons::before{
 	content: '';
 	box-sizing: border-box;
 	width: 480px;
@@ -374,7 +308,63 @@ li:hover {
 	border: 1px solid;
 	border-color: transparent;
 }
-.uploadAndDelete button{
+/* modal page 1 */
+.modalPage1{
+	display: none;
+}
+.photoGallery{
+	box-sizing: border-box;
+	display: flex;
+	justify-content:flex-start;
+	gap: 13px;
+	padding: 13px;
+
+	height: 440px;
+	width: 478px;
+
+	background-color: #FFFFFF;
+	display: grid;
+  	grid-template-columns: 80px 80px 80px 80px 80px;
+	grid-template-rows: 120px 120px 120px;
+}
+.photoGallery figure{
+	height: 120px;
+}
+.figurePhoto img{
+	display: flex;
+	height: 100px;
+	width: 80px;
+	margin-bottom: 5px;
+}
+.modalFigure .fa-solid{
+	border: 1px solid black;
+	border-radius: 2px;
+	background-color: black;
+	color: #FFFFFF;
+	padding: 3px;
+}
+.photoIcons {
+	position: relative;
+	top: 25px;
+	left: 33px;
+}
+.photoIcons .fa-trash-can{
+	cursor: pointer;
+}
+.photoIcons .fa-arrows{
+	color: transparent;
+	background-color: transparent;
+	border-color: transparent;
+	position: relative;
+	right: 5px;
+	cursor: pointer;
+}
+.photoIcons .fa-arrows:hover{
+	color: #FFFFFF;
+	background-color: black;
+	border-color: black;
+}
+.modalButtonsPage1 button{
 	justify-content: center;
 	width: 240px;
 	padding: 10px 40px 10px 40px;
@@ -385,12 +375,156 @@ li:hover {
 	
 	border-color: #1D6154;
 	border-radius: 60px;
+
+	font-family: 'Syne';
+	font-size: 14px;
+	font-style: normal;
+
+	cursor: pointer;
 }
-.uploadAndDelete p{
+.modalButtonsPage1 p{
+	width: 151px;
 	margin-top: 20px;
 	color: red;
 	
 	font-weight: 400;
+
+	font-family: 'Syne';
+	font-size: 14px;
+	font-style: normal;
+
+	cursor: pointer;
+}
+.modalButtonsPage1{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	width: 480px;
+	height: 147px;
+
+	position: absolute;
+	left: 75px;
+	bottom: 50px;
+}
+/* modal page 2 */
+.modalPage2{
+	display: none;
+}
+#preview{
+	width: 129px;
+	height: 193px;
+	object-fit: cover;
+	position: relative;
+	top: 1px;
+}
+#visibleOnchange{
+	display: none;
+}
+#fileReset{
+	position: absolute;
+	right: 115px;
+	top: 130px;
+	font-size: x-large;
+	cursor: pointer;
+	color: black;
+}
+.addPictureSquare{
+	box-sizing: border-box;
+    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	margin-top: 30px;
+    width: 420px;
+	height: 193px;
+
+    background-color: #E8F1F6;
+
+	border: 1px solid #E8F1F6;
+	border-radius: 3px;
+}
+.addPictureSquare i{
+	color: #B9C5CC;
+	margin-bottom: 30px;
+	
+}
+.addPictureSquare p{
+	font-size: 10px;
+	margin-top: 10px;
+}
+.addPictureSquare i, .addPictureSquare p{
+	display: flex;
+	justify-content: center;
+}
+#addPictureLabel{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 173px;
+	height: 36px;
+
+	z-index: 2;
+	cursor: pointer;
+
+	border-radius: 50px;
+
+	background: #CBD6DC;
+	border-color: #CBD6DC;
+	border-radius: 50px;
+
+	color: #306685;
+	font-family: 'Work Sans';
+    font-size: 14px;
+	font-weight: 600;
+}
+.labelModalPage2{
+	box-sizing: border-box;
+    display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+}
+.labelModalPage2 label{
+	justify-content: flex-start;
+}
+.labelModalPage2 input, select{
+	height: 50px;
+	margin-bottom: 20px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: transparent;	
+}
+.modalButtonsPage2{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	width: 480px;
+	height: 147px;
+
+	position: absolute;
+	left: 75px;
+	bottom: 20px;
+}
+#submitWorkButton{
+	justify-content: center;
+	width: 240px;
+	padding: 10px 40px 10px 40px;
+
+	color: #FFFFFF;
+	
+	background-color: #A7A7A7;
+	
+	border-color: #A7A7A7;
+	border-radius: 60px;
+
+	font-family: 'Syne';
+	font-size: 14px;
+	font-style: normal;
+
+	cursor: pointer;
 }
 /* gallery */
 .gallery {

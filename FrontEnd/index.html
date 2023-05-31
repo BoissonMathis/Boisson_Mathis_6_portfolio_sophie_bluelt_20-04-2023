@@ -24,12 +24,12 @@
 		<button class="publishChanges" id="publishChanges">Publier les changements</button>
 	</aside>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<a href="./login.html"><li>login</li></a>
+			<a href="./index.html"><li>projets</li></a>
+			<a href="#"><li>contact</li></a>
+			<a href="./login.html" class="logAndDelog"><li>login</li></a>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -64,102 +64,54 @@
 		<aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titleModal" style="display: none;">
 			<div class="projectModal modalStop" id="projectModal">
 				<i class="fa-solid fa-xmark" id="modalClose"></i>
-				<h1 id="titleModal">Galerie photo</h1>
-				<div class="photoGallery">
-					<figure class="photoFromGallery">
-						<img src="./appartement-paris.png">
-						<a id="">éditer</a>
-						<div class="photoGalleryIcons">
-							<i class="fa-solid fa-arrows-up-down-left-right fa-arrows"></i>
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<!-- <figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure>
-					<figure>
-						<img src="./appartement-paris.png">
-						<a>éditer</a>
-						<div class="galleryIcons">
-							<i class="fa-solid fa-trash-can"></i>
-						</div>
-					</figure> -->
+
+				<div class="modalPage1" id="photoGalleryPage">
+					<h1 class="titleModal" id="titleModal">Galerie photo</h1>
+					<div class="photoGallery">
+					</div>
+					<div class="modalButtons modalButtonsPage1">
+						<button id="addPictureButton">Ajouter une photo</button>
+						<p id="deleteAllWorks">supprimer la galerie</p>
+					</div>
 				</div>
-				<div class="uploadAndDelete">
-					<button>Ajouter une photo</button>
-					<p>supprimer la galerie</p>
+
+				<div class="modalPage2" id="addPicturePage">
+					<i class="fa-solid fa-arrow-left" id="previousPage"></i>
+					<h1 class="titleModal">Ajout photo</h1>
+					
+					<form class="postNewWork" id="postNewWork">
+						<div class="addPictureSquare">
+							<div id="visibleOnchange">
+								<img id="preview">
+								<i class="fa-solid fa-xmark" id="fileReset"></i>
+							</div>
+							<div id="invisibleOnchange">
+								<input type="file" name="file" id="file" accept="image/*" hidden required>
+								<i class="fa-regular fa-image fa-4x"></i>
+								<label for="file" id="addPictureLabel">+ Ajouter photo</label>
+								<p>jpg, png : 4mo max</p>
+							</div>
+						</div>
+
+						<div class="labelModalPage2">
+							<label for="title">Title</label><br>
+							<input type="text" class="labelModal" id="newWorkTitle" name="title" placeholder="Titre du projet" required>
+
+							<label for="categorySelection">Catégorie</label><br>
+							<select name="category" id="categorySelection">
+
+							</select>
+						</div>
+
+						<div class="modalButtons modalButtonsPage2">
+							<button type="submit" id="submitWorkButton">Valider</button>
+						</div>
+
+						<p id="erreur"></p>
+					</form>
+
 				</div>
+
 			</div>
 		</aside>
 		
@@ -192,7 +144,7 @@
 	</nav>
 </footer>
 
-<script src="./project.js" type="module"></script>
+<script src="./project.mjs" type="module"></script>
 
 
 </body>

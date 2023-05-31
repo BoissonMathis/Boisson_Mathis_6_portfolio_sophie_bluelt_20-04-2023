@@ -1,21 +1,35 @@
-async function userConnected(){
-    if (localStorage.hasOwnProperty('token') == true){
-        document.querySelector('#articleEditButton').style.display = 'flex';
-        document.querySelector('#editionModeEditButton').style.display = 'flex';
-        document.querySelector('#projectEditButton').style.display = 'flex';
-        document.querySelector('#figureEditButton').style.display = 'flex';
-        document.querySelector('#editionMode').style.display = 'flex';
-    } else if (localStorage.hasOwnProperty('token') == false){
-        document.querySelector('#articleEditButton').style.display = 'none';
-        document.querySelector('#editionModeEditButton').style.display = 'none';
-        document.querySelector('#projectEditButton').style.display = 'none';
-        document.querySelector('#figureEditButton').style.display = 'none';
-        document.querySelector('#editionMode').style.display = 'none';
-    }
-    return
+const logAndDelog = document.querySelector('.logAndDelog');
+const editButtons = document.querySelectorAll('#articleEditButton, #editionModeEditButton, #projectEditButton, #figureEditButton')
+const editionMode = document.querySelector('#editionMode')
 
+async function userConnected(){
+
+    if (localStorage.hasOwnProperty('token') == true){
+
+        editButtons.forEach(element => {
+            element.style.display = 'flex';
+        });
+
+        editionMode.style.display = 'flex';
+        logAndDelog.innerHTML = '<li>delog</li>';
+        logAndDelog.addEventListener('click', deleteToken)
+
+    } else if (localStorage.hasOwnProperty('token') == false){
+
+        editButtons.forEach(element => {
+            element.style.display = 'none';
+        });
+
+        editionMode.style.display = 'none';
+    }
+
+    return
 }
 
 export {userConnected};
+
+function deleteToken (){
+    localStorage.removeItem('token');
+}
 
 console.log(localStorage.hasOwnProperty('token'));
