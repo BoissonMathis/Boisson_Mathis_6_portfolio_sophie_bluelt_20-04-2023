@@ -11,7 +11,7 @@ async function userConnected(){
         });
 
         editionMode.style.display = 'flex';
-        logAndDelog.innerHTML = '<li>delog</li>';
+        logAndDelog.innerHTML = '<li>logout</li>';
         logAndDelog.addEventListener('click', deleteToken)
 
     } else if (localStorage.hasOwnProperty('token') == false){
@@ -31,5 +31,3 @@ export {userConnected};
 function deleteToken (){
     localStorage.removeItem('token');
 }
-
-console.log(localStorage.hasOwnProperty('token'));

@@ -182,6 +182,7 @@ li:hover {
 	border: 0px;
 
 	font-size: 14px;
+	cursor: pointer;
 }
 /* introduction */
 #introduction {
@@ -526,6 +527,13 @@ li:hover {
 
 	cursor: pointer;
 }
+.error {
+	display: flex;
+	justify-content: center;
+	font-size: 14px;
+	color: red;
+	
+}
 /* gallery */
 .gallery {
 	width: 100%;
@@ -614,11 +622,15 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
-#footer {
+.footer {
 	position: absolute;
 	bottom: 0px;
-	right: 461px;
+	right: 0px;
+}
+
+#footer{
+	margin-top: 36.5vh;
 }
 

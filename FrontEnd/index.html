@@ -79,14 +79,14 @@
 					<i class="fa-solid fa-arrow-left" id="previousPage"></i>
 					<h1 class="titleModal">Ajout photo</h1>
 					
-					<form class="postNewWork" id="postNewWork">
+					<form class="postNewWork" id="postNewWork" name="postNewWork">
 						<div class="addPictureSquare">
 							<div id="visibleOnchange">
 								<img id="preview">
 								<i class="fa-solid fa-xmark" id="fileReset"></i>
 							</div>
 							<div id="invisibleOnchange">
-								<input type="file" name="file" id="file" accept="image/*" hidden required>
+								<input type="file" name="file" id="file" accept=".jpg, .png," maxlength="4" hidden required>
 								<i class="fa-regular fa-image fa-4x"></i>
 								<label for="file" id="addPictureLabel">+ Ajouter photo</label>
 								<p>jpg, png : 4mo max</p>
@@ -95,7 +95,7 @@
 
 						<div class="labelModalPage2">
 							<label for="title">Title</label><br>
-							<input type="text" class="labelModal" id="newWorkTitle" name="title" placeholder="Titre du projet" required>
+							<input type="text" class="labelModal" id="newWorkTitle" name="title" placeholder="Titre du projet" >
 
 							<label for="categorySelection">Catégorie</label><br>
 							<select name="category" id="categorySelection">
@@ -107,7 +107,10 @@
 							<button type="submit" id="submitWorkButton">Valider</button>
 						</div>
 
-						<p id="erreur"></p>
+						<div class="error">
+							<p id="formError"></p>
+						</div>
+
 					</form>
 
 				</div>

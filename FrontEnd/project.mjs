@@ -12,7 +12,6 @@ const gallery = document.getElementById('gallery');
 async function displayAllWorks() {
     var reponse = await fetch('http://localhost:5678/api/works');
     var works = await reponse.json();
-    console.log(works);
 
     works.forEach(element => {
 
@@ -97,4 +96,3 @@ function getWork(work){
 }
 
 displayFilters();
-console.log(localStorage);

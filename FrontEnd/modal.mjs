@@ -18,6 +18,7 @@ async function displayModal() {
         modal.querySelector('#modalClose').addEventListener('click', closeModal);
         modal.querySelector('.modalStop').addEventListener('click', stopPropagation);
         document.querySelector('.modalPage1').style.display = 'block';
+        document.getElementById('addPicturePage').style.display = 'none';
         displayModalPhotoGallery()
     }
 
@@ -50,7 +51,7 @@ async function displayModal() {
     async function displayModalPhotoGallery(){
         var reponse = await fetch('http://localhost:5678/api/works');
         var works = await reponse.json();
-        addPicturePage.style.display = 'none';
+        // addPicturePage.style.display = 'none';
         // console.log(works);
 
         works.forEach(element => {
@@ -130,7 +131,8 @@ async function displayModal() {
             })
             var works = await reponse.json();
             console.log(works);       
-    });
+        });
+
         modalPhotoGallery.innerHTML = '';
         displayModalPhotoGallery(); 
     });
@@ -139,6 +141,9 @@ async function displayModal() {
 
     const previousPage = document.getElementById('previousPage');
     const addPicturePage = document.getElementById('addPicturePage');
+    const error = document.getElementById('formError');
+
+
 
     function previousModalPage(){
         addPicturePage.style.display = 'none';
@@ -174,6 +179,7 @@ async function displayModal() {
 
     document.getElementById('file').addEventListener('change', previewImage);
 
+
     function fileReset(){
 
         const file = document.getElementById('file');
@@ -196,6 +202,20 @@ async function displayModal() {
 
     document.getElementById('fileReset').addEventListener('click', fileReset)
 
+
+    document.getElementById('file').addEventListener('change', async function fileMaxlenght() {
+        const file = document.getElementById('file').files[0];
+        const fileSize = file.size;
+        console.log(fileSize);
+
+        if(fileSize >= 4194304){
+            fileReset();
+            error.style.display = 'block';
+            error.innerHTML = 'Le fichier selectionné est trop volumineux';
+        }
+    })
+
+
     async function NewWorkCategorySelection() {
         var reponse = await fetch('http://localhost:5678/api/categories');
         var categories = await reponse.json();
@@ -203,6 +223,7 @@ async function displayModal() {
         categories.forEach(element => {
             const createOption = document.createElement('option');
             createOption.setAttribute('value', element.name);
+            createOption.setAttribute('id', element.id)
             createOption.innerText = element.name;
             document.getElementById('categorySelection').appendChild(createOption);
         })
@@ -210,83 +231,93 @@ async function displayModal() {
 
     NewWorkCategorySelection();
 
-    async function addNewWork() {
-        var reponse = await fetch('http://localhost:5678/api/works');
-        var works = await reponse.json();
-        const newWorkFormSubmit = document.getElementById('submitWorkButton');
-        const imageInput = document.getElementById('file');
-        const titleInput = document.getElementById('newWorkTitle');
+    
+    const newWorkFormSubmit = document.getElementById('submitWorkButton');
 
-        newWorkFormSubmit.addEventListener('submit', function (event) {
-        event.preventDefault();
+    async function allowSubmitNewWorkForm () {
+        var newFile = Boolean(document.getElementById('file').value === '');
+        var newWorkTitle = Boolean(document.getElementById('newWorkTitle').value === '');
+        error.innerHTML = '';
 
-        // if (!titleInput.value || !imageInput.files.length <= 0){
-        //     preventDefault();
-        //     newWorkFormSubmit.style.backgroundColor = '#A7A7A7';
-        // }
+        if ((newFile == false) && (newWorkTitle == false)){
 
-        // else {
-        //     newWorkFormSubmit.style.backgroundColor = '#1D6154';
-        // }
-        
-        const newWork = {
-            category: event.target.querySelector('[name=category]').id,
-            imageUrl: event.target.querySelector('[name=file]').files[0],
-            title: event.target.querySelector('[name=title]').value,
+            newWorkFormSubmit.style.backgroundColor = '#1D6154';
+
+        }else {
+
+            newWorkFormSubmit.style.backgroundColor = '#A7A7A7';
         }
-        const chargeUtile = JSON.stringify(newWork);
-        console.log(newWork);
+    }
+    
 
-        fetch('http://localhost:5678/api/works'),{
+    document.getElementById('file').addEventListener('change', allowSubmitNewWorkForm);
+    document.getElementById('newWorkTitle').addEventListener('change', allowSubmitNewWorkForm);
+
+
+    document.getElementById('submitWorkButton').addEventListener('click', async function submitNewWorkForm (e){
+        e.preventDefault();
+
+        var newFile = Boolean(document.getElementById('file').value === '');
+        var newWorkTitle = Boolean(document.getElementById('newWorkTitle').value === '');
+        console.log(newFile, newWorkTitle);
+
+        if ((newFile == false) && (newWorkTitle == false)){
+
+            newWorkFormSubmit.style.backgroundColor = '#1D6154';
+            postNewWork();
+        }if (newFile == true){
+            error.innerHTML = 'Veuillez ajouter une image';
+            e.preventDefault();
+
+        }if (newWorkTitle == true){
+            error.innerHTML = 'Veuillez renseigner un titre';
+
+        }if ((newFile == true) && (newWorkTitle == true)){
+
+            error.innerHTML = 'Veuillez renseigner tout les champs';
+        }
+    });
+
+    const gallery = document.getElementById('gallery');
+
+    async function postNewWork(event){
+        
+        var file = document.getElementById('file').files[0];
+        var title = document.getElementById('newWorkTitle').value;
+        var optionSelected = document.getElementById('categorySelection').selectedIndex;
+        console.log(optionSelected);
+        var category = document.getElementById('categorySelection').options[optionSelected].id;
+        
+        let formData = new FormData();
+        
+        formData.append('image',file);
+        formData.append('title',title);
+        formData.append('category',category);   
+
+        let response = await fetch('http://localhost:5678/api/works',{
             method: 'POST',
-            headers: {'Content-Type': 'multipart/form-data'},
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },  
+            body: formData,
+        });
+        console.log(response);
 
-            body: chargeUtile,
-        }
-
-    })
-    }
-
-    addNewWork();
-
-    function test() {
-        const titleNewWork = document.getElementById('newWorkTitle');
-        console.log(!!titleNewWork)
-    }
-
-    test();
-
-    // console.log(document.forms);
-    // document.forms['postNewWork'].addEventListener('submit', function (e) {
         
-    //     console.log(this['submitWorkButton']);
-    //     e.preventDefault();
-    // });
+        gallery.innerHTML = '';
+        displayAllWorks();
 
-    // document.getElementById('postNewWork').addEventListener('submit', function(e) {
+        modalPhotoGallery.innerHTML = '';
+        displayModalPhotoGallery();
 
-    //     var inputs = this.getElementsByTagName('input');
-        
+        fileReset();
 
-    //     var erreur = document.getElementById('erreur');
-
-    //     for (var i = 0; i < inputs.lenght; i++) {
-    //         console.log(inputs[i]);
-    //         if (!inputs[i].value) {
-    //             erreur.innerHTML = 'error';
-    //             erreur.style.color = 'red';
-    //         }
-    //     }
-
-    //     if (erreur) {
-    //         e.preventDefault();
-    //         erreur.innerHTML = erreur;
-    //         return false;
-    //     } else {
-    //         alert('formulaire envoyé');
-    //     }
-    // })
-    // console.log(inputs);
+        error.innerHTML = 'Projet ajoutée à la gallery';
+        document.getElementById('newWorkTitle').value = '';
+        newWorkFormSubmit.style.backgroundColor = '#A7A7A7';
+    };
 }
+
+
 
 export {displayModal};
